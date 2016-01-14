@@ -1,5 +1,4 @@
-* Blood splats on wrong sorting layer (or player?)
-* Player movement not responsive enough
+* Audio left/right weirdness
 * Low frame rate
 
 * Enemy reaction times too fast
@@ -9,6 +8,7 @@
 * Clamp left/right look distance in full screen view
 * Player Layer FOW for rooms you haven't been to
 * Need black fade as elevator drops
+* Need fade in to happen a bit faster (towards its end)
 
 
 -----------

@@ -1,0 +1,21 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class spawnChanceByLevel : MonoBehaviour {
+
+	public float baseChanceToSpawn = 10;
+	public float chanceMultiplierPerLevel = 10;
+
+	void Start () 
+	{
+		float chanceToSpawn = baseChanceToSpawn + (RPGelements.rpgElements.level * chanceMultiplierPerLevel);
+		float roll = Random.Range (0, 101);
+		if (roll >= chanceToSpawn)
+			Destroy (gameObject);
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}

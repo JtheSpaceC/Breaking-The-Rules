@@ -1,0 +1,154 @@
+fileFormatVersion: 2
+guid: 1c4650e675dfca944a545d714e70ad43
+timeCreated: 1425842023
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Utility sprites1.0_0
+    21300002: Utility sprites1.0_1
+    21300004: Utility sprites1.0_2
+    21300006: Utility sprites1.0_3
+    21300008: Utility sprites1.0_4
+    21300010: Utility sprites1.0_5
+    21300012: Utility sprites1.0_6
+    21300014: Utility sprites1.0_7
+    21300016: Utility sprites1.0_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Utility sprites1.0_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 500
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Utility sprites1.0_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 500
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Utility sprites1.0_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 485
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Utility sprites1.0_3
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 485
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Utility sprites1.0_4
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 485
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Utility sprites1.0_5
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 485
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Utility sprites1.0_6
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 485
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Utility sprites1.0_7
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 484
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Utility sprites1.0_8
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 482
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

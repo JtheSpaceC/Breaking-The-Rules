@@ -1,0 +1,4 @@
+The title text is there in white, alpha layer clear.
+Frames go down instead of across. Each frame spans the whole width.
+120pixel intervals on the height.
+840 wide.

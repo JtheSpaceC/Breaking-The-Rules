@@ -1,0 +1,61 @@
+Initialize engine version: 5.0.0f4 (5b98b70ebeb9)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll (this message is harmless)
+Loading D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll into Unity Child Domain
+Platform assembly: D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\Pathfinding.JsonFx.dll (this message is harmless)
+Loading D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\Pathfinding.JsonFx.dll into Unity Child Domain
+- Completed reload, in  0.146 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Dropbox\Unity\1GAM -2015-03- Breaking The Rules\Builds\pc build\1GAM build (PC)_Data\Managed\System.dll (this message is harmless)
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.020356 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 5311.
+Total: 1.851063 ms (FindLiveObjects: 0.173573 ms CreateObjectMapping: 0.356757 ms MarkObjects: 1.300928 ms  DeleteObjects: 0.018930 ms)
+
+Scanning - Process took 36 ms to complete
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Scanning - Process took 30 ms to complete
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Scanning - Process took 36 ms to complete
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 170.462433 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 5341.
+Total: 2.123947 ms (FindLiveObjects: 0.153769 ms CreateObjectMapping: 0.250749 ms MarkObjects: 1.694381 ms  DeleteObjects: 0.024172 ms)
+
+Scanning - Process took 31 ms to complete
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Scanning - Process took 33 ms to complete
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Scanning - Process took 41 ms to complete
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+

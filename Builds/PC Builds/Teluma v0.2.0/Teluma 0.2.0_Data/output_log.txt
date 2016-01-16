@@ -1,0 +1,89 @@
+Initialize engine version: 5.3.1f1 (cc9cbbcc37b4)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll (this message is harmless)
+Loading D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll into Unity Child Domain
+Platform assembly: D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\Pathfinding.JsonFx.dll (this message is harmless)
+Loading D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\Pathfinding.JsonFx.dll into Unity Child Domain
+- Completed reload, in  0.065 seconds
+Platform assembly: D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Unity\Teluma\Builds\PC Builds\Teluma v0.2.0\Teluma 0.2.0_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.728368 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.496227 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 5279.
+Total: 1.939889 ms (FindLiveObjects: 0.186970 ms CreateObjectMapping: 0.355884 ms MarkObjects: 1.375483 ms  DeleteObjects: 0.020677 ms)
+
+Scanning - Process took 36 ms to complete
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Scanning - Process took 26 ms to complete
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Path Completed : Computation Time 3.00 ms Searched Nodes 37 Path Length 37
+Path Number 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Path Completed : Computation Time 1.00 ms Searched Nodes 95 Path Length 45
+Path Number 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Path Completed : Computation Time 0.00 ms Searched Nodes 220 Path Length 44
+Path Number 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Path Completed : Computation Time 0.00 ms Searched Nodes 393 Path Length 54
+Path Number 4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Path Completed : Computation Time 0.00 ms Searched Nodes 92 Path Length 45
+Path Number 5
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Path Completed : Computation Time 0.00 ms Searched Nodes 202 Path Length 75
+Path Number 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Path Completed : Computation Time 0.00 ms Searched Nodes 260 Path Length 64
+Path Number 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Path Completed : Computation Time 1.00 ms Searched Nodes 450 Path Length 79
+Path Number 8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Path Completed : Computation Time 0.00 ms Searched Nodes 51 Path Length 33
+Path Number 9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 208c -> priority: 1 

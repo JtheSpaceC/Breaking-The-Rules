@@ -1,6 +1,7 @@
 * Audio left/right weirdness
 * Low frame rate
 
+* Add loading progress bar
 * Enemy reaction times too fast
 * Hacking is taking too long
 * Eliminate 'R' to restart
@@ -25,6 +26,7 @@ MUST HAVE
 * Better room generation & decoration code
 * More tutorials
 * UI hints on loading screens
+* Better shooting mechanics (maybe physical bullets)
 
 SHOULD HAVE
 

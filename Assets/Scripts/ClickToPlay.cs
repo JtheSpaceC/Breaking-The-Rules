@@ -25,6 +25,9 @@ public class ClickToPlay : MonoBehaviour {
 	
 	public int whichSlideToShow = 0;
 
+	[Header("Loading Bar stuff")]
+	public Slider loadingSlider;
+
 
 	void Awake()
 	{
@@ -88,7 +91,25 @@ public class ClickToPlay : MonoBehaviour {
 	{
 		SceneManager.LoadScene(whichLevel);
 	}
-	
+
+
+	public void CallLoadLevelAsync(int whichLevel)
+	{
+		StartCoroutine(LoadLevelAsync(whichLevel));
+	}
+	IEnumerator LoadLevelAsync(int whichLevel)
+	{
+		AsyncOperation async = SceneManager.LoadSceneAsync(whichLevel);
+
+		while(!async.isDone)
+		{
+			loadingSlider.value = async.progress;
+			Debug.Log(async.progress);
+			yield return null;
+		}
+	}
+
+
 	public void QuitGame()
 	{		
 		#if UNITY_STANDALONE

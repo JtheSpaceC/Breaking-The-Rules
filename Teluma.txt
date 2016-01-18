@@ -1,9 +1,6 @@
-* Audio left/right weirdness
 * Low frame rate
 
-* Add loading progress bar
 * Enemy reaction times too fast
-* Hacking is taking too long
 * Eliminate 'R' to restart
 * If 'total' adrenaline cancels others, show the positive number, then 0 XP loss
 * Clamp left/right look distance in full screen view

@@ -36,11 +36,13 @@ public class HackingZone : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D other)
 	{
-		if(other.tag == "Player")
+		if(other.tag != "Player")
 		{
-			hintImage.enabled = true;
-			fillerImage.transform.root.transform.position = transform.position;
+			return;
 		}
+
+		hintImage.enabled = true;
+		fillerImage.transform.root.transform.position = transform.position;
 
 		if (Input.GetKey (KeyCode.E))
 		{

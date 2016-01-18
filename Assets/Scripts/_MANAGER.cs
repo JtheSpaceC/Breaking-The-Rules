@@ -9,6 +9,10 @@ public class _MANAGER : MonoBehaviour {
 
 	Shooting playerShooting;
 
+	[Header("For Testing")]
+	public bool doLevelFadeInThing = true;
+	public bool hackCamsCheatActive = false;
+
 	[HideInInspector]public GameObject player;
 	[Header("Loot Prefabs")]
 	public GameObject keycardGreenPrefab;
@@ -16,7 +20,7 @@ public class _MANAGER : MonoBehaviour {
 	public GameObject ammoPrefab;
 	public GameObject syringePrefab;
 
-	[Header(" ")]
+	[Header("Other")]
 	public AudioClip elevatorStopping;
 	public Image blackoutPanel;
 	public GameObject rpgStatsPanel;
@@ -35,13 +39,12 @@ public class _MANAGER : MonoBehaviour {
 	[HideInInspector] public float startTime;
 	[HideInInspector] public float levelStartTime;
 
-	public bool fadingIn = true;
+	public bool fadingIn = false;
 	public bool fadingOut = false;
 	public float delayBeforeFadeStart = 2f;
 
 	public bool gameOver = false;
 	public bool levelCamsHacked = false;
-	public bool hackCamsCheatActive = false;
 
 
 	void Awake()
@@ -57,13 +60,9 @@ public class _MANAGER : MonoBehaviour {
 	}
 
 	void Start()
-	{
+	{		
 		player = GameObject.FindGameObjectWithTag ("Player");
 		playerShooting = player.GetComponentInChildren<Shooting> ();
-		blackoutPanel.gameObject.SetActive (true);
-		blackOutPanelColor = blackoutPanel.color;
-		titleImageColor = titleImage.color;
-		AudioSource.PlayClipAtPoint (elevatorStopping, player.transform.position);
 		levelStartTime = Time.time;
 		startTime = delayBeforeFadeStart;
 		Invoke ("MakeAllowedToPause", delayBeforeFadeStart);
@@ -89,12 +88,28 @@ public class _MANAGER : MonoBehaviour {
 		
 		whichLevel1.text = text;
 		whichLevel2.text = text;
+
+		if(doLevelFadeInThing)
+		{
+			StartCoroutine( DoLevelFadeIn());
+		}
+		else
+		{
+			PlayerCanStart();
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () 
+
+	IEnumerator DoLevelFadeIn()
 	{
-		if (fadingIn && Time.time >= delayBeforeFadeStart && blackoutPanel.color.a != 0) 
+		fadingIn = true;
+		blackoutPanel.gameObject.SetActive (true);
+		blackOutPanelColor = blackoutPanel.color;
+		titleImageColor = titleImage.color;
+		AudioSource.PlayClipAtPoint (elevatorStopping, player.transform.position);
+
+		yield return new WaitForSeconds(delayBeforeFadeStart);
+
+		while(blackoutPanel.color.a != 0)
 		{
 			Color newColor = Color.Lerp (blackOutPanelColor, Color.clear, (Time.time - levelStartTime - startTime) / fadeInOutTime);
 			blackoutPanel.color = newColor;
@@ -104,10 +119,24 @@ public class _MANAGER : MonoBehaviour {
 			sublevelText.text = "Sublevel: "+ RPGelements.rpgElements.level;
 			missionText.color = newColor2;
 			controlsText.color = newColor2;
-		} 
-		else if (fadingIn && Time.time >= delayBeforeFadeStart)
-			SwitchFadeInBool ();
+			yield return new WaitForEndOfFrame();
+		}
+
+		fadingIn = false;
 	}
+
+
+	public void PlayerCanStart()
+	{
+		GameObject.Find("Panel (Wrist)").gameObject.SetActive(false);
+		FindObjectOfType<PlayerMovement>().enabled = true;
+		player.GetComponentInChildren<Shooting>().enabled = true;
+		player.transform.FindChild("Radar(Output)").gameObject.SetActive(true);
+		FindObjectOfType<ClickToPlay>().MouseLockToScreen();
+		FindObjectOfType<CameraScript>().SwitchCanShowMap();
+		FindObjectOfType<CameraScript>().ToggleMap();
+	}
+
 
 	public GameObject getLootPrefab(string name)
 	{
@@ -129,11 +158,6 @@ public class _MANAGER : MonoBehaviour {
 		}
 		else
 			return new GameObject();
-	}
-
-	void SwitchFadeInBool()
-	{
-		fadingIn = !fadingIn;
 	}
 
 	public IEnumerator RPGstatsScreen()

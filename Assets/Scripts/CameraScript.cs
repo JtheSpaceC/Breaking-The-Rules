@@ -49,7 +49,11 @@ public class CameraScript : MonoBehaviour {
 	void LateUpdate () 
 	{
 		if (!alwaysOnPlayer)
-			transform.position = (player.position + cursor.position) / 2 + offset;
+		{
+			Vector2 dir = (cursor.position - player.position).normalized;
+			float dist = Mathf.Clamp( Vector2.Distance(player.position, cursor.position), 0, Camera.main.orthographicSize * 2);
+			transform.position = (Vector3)player.position + (Vector3)(dir * dist)/2 + offset;
+		}
 		else
 			transform.position = player.position + offset;
 	}

@@ -1,4 +1,3 @@
-* Clamp left/right look distance in full screen view
 * Particles where bullets hit
 * Investigate guards outside the elevator
 * Low frame rate

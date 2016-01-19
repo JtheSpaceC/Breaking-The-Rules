@@ -48,12 +48,16 @@ public class Soldier : MonoBehaviour {
 	public float maxWaitAtPatrolPointTime = 4;
 	
 	//public float hp = 100f;
-	public bool inDanger = false;
-	public bool inCover = false;
-	public bool underFire = false;
-	public bool suppressed = false;
-	public bool firing = true;
-	
+	[HideInInspector] public bool inDanger = false;
+	[HideInInspector] public bool inCover = false;
+	[HideInInspector] public bool underFire = false;
+	[HideInInspector] public bool suppressed = false;
+	[HideInInspector] public bool firing = true;
+	[HideInInspector] public bool iAmCurious = false;
+
+	[Tooltip("How long after seeing an enemy will they check again to confirm sighting")]
+	public float reactionTime = 0.5f;
+
 	public float baseAccuracy = 50;
 	public Transform targetToShoot;
 	
@@ -82,6 +86,7 @@ public class Soldier : MonoBehaviour {
 	Vector2 lastConfirmedSighting;
 
 	[Header("Sounds")]
+	public AudioClip[] curiousSounds;
 	public AudioClip[] alertSounds;
 
 
@@ -274,54 +279,12 @@ public class Soldier : MonoBehaviour {
 
 	}
 
-	void ExamineArea()
-	{
-		if (fovCollider.IsTouchingLayers (suspiciousLayers)) 
-		{
-			Collider2D[] myEnemies = Physics2D.OverlapCircleAll (transform.position, 20f, oppositionLayer);
-
-			foreach (Collider2D enemy in myEnemies) 
-			{
-				Vector2 dir = (enemy.transform.position - transform.position).normalized;
-				float dist = Vector2.Distance (enemy.transform.position, transform.position) - 0.5f;
-				RaycastHit2D hit = Physics2D.Raycast (transform.position + (transform.up * 0.5f), dir, dist, sightBlockLayers);
-
-				if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer(oppositionLayerAsString)) 
-				{
-					//opposition is in line of sight, raise the alarm.
-					targetToShoot = hit.collider.transform;
-
-					float[] weights = new float[]{33.33f, 0, 0};
-
-					state = ReturnANewState(combatStates, weights);
-				} 
-				else 
-				{
-					//can't directly see enemy within the cone.
-					//TODO: Search pattern
-				}
-			}
-		}
-		timerA = 0;
-	}
-
-
-	public bool IsCurrentStateOnList(stateMachine[] stateGroup)
-	{
-		foreach(stateMachine sMachine in stateGroup)
-		{
-			if(sMachine == this.state)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
 
 
 	public stateMachine ReturnANewState(stateMachine [] possibleStates, float[] weights)
 	{
 		StopCoroutine("CheckAmIAnIdiot");
+		iAmCurious = false;
 
 		float totalWeight = 0;
 		float weightCheck = 0;
@@ -346,21 +309,6 @@ public class Soldier : MonoBehaviour {
 		Debug.Log ("SWITCHING STATES function FAILED.");
 		return stateMachine.Patroling;
 	}
-
-	bool TargetInSight(GameObject target)
-	{
-		Vector2 dir = (target.transform.position - transform.position).normalized;
-		float dist = Vector2.Distance (target.transform.position, transform.position) - 0.5f;
-		RaycastHit2D hit = Physics2D.Raycast (transform.position + (transform.up * 0.5f), dir, dist, sightBlockLayers);
-
-		if (hit.collider != null && hit.collider.gameObject == target) {
-			return true;
-		} else 
-			return false;
-
-	}
-	
-
 
 	/// <summary>
 	/// below are all the States. Functions they use are above	/// </summary>
@@ -404,23 +352,6 @@ public class Soldier : MonoBehaviour {
 		}
 	}
 
-	IEnumerator CheckAmIAnIdiot() //intended to fix guys walking into boxes and staying there. Haven't been able to fix on A*
-	{
-		Vector3 oldPos = transform.position;
-
-		yield return new WaitForSeconds(maxWaitAtPatrolPointTime);
-
-		Vector3 newPos = transform.position;
-
-		if(Vector3.Distance(oldPos, newPos) < 0.25f)
-		{
-			whereTo = ChoosePatrolPoint();
-			aStarAI.targetPosition = whereTo;
-			aStarAI.UpdatePath();
-			Debug.LogError(gameObject.name + " checked if they were an IDIOT, and they were!"); 
-		}		
-		StartCoroutine("CheckAmIAnIdiot");
-	}
 
 	void GuardingState()
 	{
@@ -444,6 +375,7 @@ public class Soldier : MonoBehaviour {
 			ExamineArea();
 		}
 	}
+
 
 	void ChargingState(Transform targetToCharge)
 	{
@@ -478,4 +410,97 @@ public class Soldier : MonoBehaviour {
 			state = stateMachine.Patroling;
 		}
 	}
+
+
+	void ExamineArea()
+	{
+		if (fovCollider.IsTouchingLayers (suspiciousLayers)) 
+		{
+			Collider2D[] myEnemies = Physics2D.OverlapCircleAll (transform.position, 20f, oppositionLayer);
+
+			if(myEnemies.Length == 0)
+			{
+				iAmCurious = false;
+			}
+			else
+			{
+				foreach (Collider2D enemy in myEnemies) 
+				{
+					if(TargetInSight(enemy.gameObject)) 
+					{
+						//opposition is in line of sight, raise the alarm?
+
+						if(!iAmCurious)
+						{
+							iAmCurious = true;
+							audioSource.clip = curiousSounds[Random.Range(0, curiousSounds.Length)]; 
+							audioSource.Play();
+							//TODO: play Curious animation
+						}
+						else
+						{
+							targetToShoot = enemy.transform;
+
+							float[] weights = new float[]{33.33f, 0, 0};
+
+							state = ReturnANewState(combatStates, weights);
+						}
+					} 
+					else 
+					{
+						//can't directly see enemy within the cone.
+						//TODO: Search pattern
+					}
+				}
+			}
+		}
+		timerA = 0;
+	}
+
+
+	bool TargetInSight(GameObject target)
+	{
+		Vector2 dir = (target.transform.position - transform.position).normalized;
+		float dist = Vector2.Distance (target.transform.position, transform.position) - 0.5f;
+		RaycastHit2D hit = Physics2D.Raycast (transform.position + (transform.up * 0.5f), dir, dist, sightBlockLayers);
+
+		if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer(oppositionLayerAsString)) {
+			return true;
+		} else 
+			return false;
+	}
+
+
+	//not used
+	public bool IsCurrentStateOnList(stateMachine[] stateGroup)
+	{
+		foreach(stateMachine sMachine in stateGroup)
+		{
+			if(sMachine == this.state)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	IEnumerator CheckAmIAnIdiot() //intended to fix guys walking into boxes and staying there. Haven't been able to fix on A*
+	{
+		Vector3 oldPos = transform.position;
+
+		yield return new WaitForSeconds(maxWaitAtPatrolPointTime);
+
+		Vector3 newPos = transform.position;
+
+		if(Vector3.Distance(oldPos, newPos) < 0.25f)
+		{
+			whereTo = ChoosePatrolPoint();
+			aStarAI.targetPosition = whereTo;
+			aStarAI.UpdatePath();
+			Debug.LogError(gameObject.name + " checked if they were an IDIOT, and they were!"); 
+		}		
+		StartCoroutine("CheckAmIAnIdiot");
+	}
+
 }//Mono

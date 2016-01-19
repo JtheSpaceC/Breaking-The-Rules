@@ -45,6 +45,9 @@ public class _MANAGER : MonoBehaviour {
 	public bool gameOver = false;
 	public bool levelCamsHacked = false;
 
+	[Header("For Effects")]
+	public GameObject bulletHitParticlesPrefab;
+
 
 	void Awake()
 	{

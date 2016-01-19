@@ -240,6 +240,9 @@ public class Shooting : MonoBehaviour {
 			{
 				pos1 = shootPoint;
 			}
+
+			Instantiate(_MANAGER.instance.bulletHitParticlesPrefab, (Vector3)pos1, Quaternion.identity);
+
 			ammoGun --;
 			UpdateAmmoText();		}
 

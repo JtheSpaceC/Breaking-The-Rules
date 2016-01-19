@@ -14,9 +14,17 @@ public class RPGEndOfLevel : MonoBehaviour {
 	public Text runningSpeedText;
 	public Text reloadSpeedText;
 
+	float tempDamageStat;
+	float tempAccuracyStat;
+	float tempMaxHealthStat;
+	float tempRunningSpeedStat;
+	float tempReloadSpeed;
+
 	public GameObject continueButton;
 
 	int totalXPLoss;
+
+	bool recordedInitialStats = false;
 
 
 	void Start()
@@ -54,6 +62,7 @@ public class RPGEndOfLevel : MonoBehaviour {
 		}
 	}
 
+
 	public void UpdateTexts()
 	{
 		damageText.text = "Damage (" + RPGelements.rpgElements.damageStat + ")";
@@ -63,9 +72,9 @@ public class RPGEndOfLevel : MonoBehaviour {
 		reloadSpeedText.text = "Reload Speed (" + RPGelements.rpgElements.reloadSpeedStat + ")";
 	}
 
+
 	void DeactivateIneligibleButtons(int xpLoss)
 	{
-		print("Deactivating buttons");
 		if (xpLoss > RPGelements.rpgElements.accuracyStat)
 			accuracyText.transform.parent.GetComponentInChildren<Button> ().interactable = false;
 		if (xpLoss > RPGelements.rpgElements.damageStat)
@@ -80,42 +89,88 @@ public class RPGEndOfLevel : MonoBehaviour {
 
 	public void ReduceAccuracy()
 	{
+		DoInitialCheck();
 		RPGelements.rpgElements.accuracyStat -= totalXPLoss;
-		DeactivateIneligibleButtons (999);
+		//DeactivateIneligibleButtons (999);
 		continueButton.SetActive(true);
 		accuracyText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = true;
 		UpdateTexts ();
 	}
 	public void ReduceDamage()
 	{
+		DoInitialCheck();
 		RPGelements.rpgElements.damageStat -= totalXPLoss;
-		DeactivateIneligibleButtons (999);
-		continueButton.SetActive(true);
+		//DeactivateIneligibleButtons (999);
 		damageText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = true;
-		UpdateTexts ();
+		FinishOff();
 	}
 	public void ReduceMaxHealth()
 	{
+		DoInitialCheck();
 		RPGelements.rpgElements.maxHealthStat -= totalXPLoss;
-		DeactivateIneligibleButtons (999);
-		continueButton.SetActive(true);
+		//DeactivateIneligibleButtons (999);
 		maxHealthText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = true;
-		UpdateTexts ();
+		FinishOff();
 	}
 	public void ReduceRunningSpeed()
 	{
+		DoInitialCheck();
 		RPGelements.rpgElements.runningSpeedStat -= totalXPLoss;
-		DeactivateIneligibleButtons (999);
-		continueButton.SetActive(true);
+		//DeactivateIneligibleButtons (999);
 		runningSpeedText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = true;
-		UpdateTexts ();
+		FinishOff();
 	}
 	public void ReduceReloadSpeed()
 	{
+		DoInitialCheck();
 		RPGelements.rpgElements.reloadSpeedStat -= totalXPLoss;
-		DeactivateIneligibleButtons (999);
-		continueButton.SetActive(true);
+		//DeactivateIneligibleButtons (999);
 		reloadSpeedText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = true;
+		FinishOff();
+	}
+
+
+	void RecordStartingStats()
+	{
+		tempDamageStat = RPGelements.rpgElements.damageStat;
+		tempAccuracyStat = RPGelements.rpgElements.accuracyStat;
+		tempMaxHealthStat = RPGelements.rpgElements.maxHealthStat;
+		tempRunningSpeedStat = RPGelements.rpgElements.runningSpeedStat;
+		tempReloadSpeed = RPGelements.rpgElements.reloadSpeedStat;
+
+		recordedInitialStats = true;
+	}
+
+	void ResetToStartingStats()
+	{
+		RPGelements.rpgElements.damageStat = tempDamageStat;
+		RPGelements.rpgElements.accuracyStat = tempAccuracyStat;
+		RPGelements.rpgElements.maxHealthStat = tempMaxHealthStat;
+		RPGelements.rpgElements.runningSpeedStat = tempRunningSpeedStat;
+		RPGelements.rpgElements.reloadSpeedStat = tempReloadSpeed;
+
+		accuracyText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = false;
+		damageText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = false;
+		maxHealthText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = false;
+		runningSpeedText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = false;
+		reloadSpeedText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = false;
+	}
+
+	void DoInitialCheck()
+	{
+		if(!recordedInitialStats)
+		{
+			RecordStartingStats();
+		}
+		else if(recordedInitialStats)
+		{
+			ResetToStartingStats();
+		}
+	}
+
+	void FinishOff()
+	{
+		continueButton.SetActive(true);
 		UpdateTexts ();
 	}
 }

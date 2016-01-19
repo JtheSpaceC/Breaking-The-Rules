@@ -13,9 +13,4 @@ public class spawnChanceByLevel : MonoBehaviour {
 		if (roll >= chanceToSpawn)
 			Destroy (gameObject);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

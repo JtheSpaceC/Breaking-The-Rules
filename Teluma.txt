@@ -2,9 +2,7 @@
 * Clamp left/right look distance in full screen view
 * Particles where bullets hit
 * Investigate guards outside the elevator
-* Ability to reassign lost points at the end
 * Low frame rate
-
 
 -----------
 MOSCOW LIST
@@ -21,6 +19,7 @@ MUST HAVE
 * More tutorials
 * UI hints on loading screens
 * Better shooting mechanics (maybe physical bullets)
+* Enemies respond to corpses (alarm & serach state). Hide corpses. Enemies lose track of you.
 
 SHOULD HAVE
 

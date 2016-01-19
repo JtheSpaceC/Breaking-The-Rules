@@ -105,15 +105,15 @@ public class Soldier : MonoBehaviour {
 		}
 
 		fovCollider = GetComponentInChildren<BoxCollider2D> ();
-		suspiciousLayers = oppositionLayer;
+		suspiciousLayers = oppositionLayer; //TODO: Add corpses to this
 		sightBlockLayers = LayerMask.GetMask ("Obstacle", "Door", "Ally", "Enemy");
 		myWeapon = transform.FindChild ("Gun").gameObject;
 		shootScript = myWeapon.GetComponentInChildren<Shooting> ();
 		speed = walkSpeed;
 		aStarAI.speed = speed;
 
-		normalStates = new stateMachine[]{stateMachine.Guarding, stateMachine.Patroling};
-		curiousStates = new stateMachine[]{stateMachine.CheckingBody, stateMachine.Searching};
+		normalStates = new stateMachine[] {stateMachine.Guarding, stateMachine.Patroling};
+		curiousStates = new stateMachine[] {stateMachine.CheckingBody, stateMachine.Searching};
 		combatStates = new stateMachine[] {stateMachine.Charging, stateMachine.TakingCover, stateMachine.Flanking};
 		postCombatStates = new stateMachine[] {stateMachine.CheckingBody, stateMachine.Searching};
 	}

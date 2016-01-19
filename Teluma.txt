@@ -1,5 +1,6 @@
-* Low frame rate
 * Make curious enemies stop and look for a bit, or search
+* When an enemy is chasing you, make them alert nearby enemies also
+* Consider doing away with pathing distance, and just alerting enemies in a room when a shot is made, and the next room if a door is open
 
 -----------
 MOSCOW LIST

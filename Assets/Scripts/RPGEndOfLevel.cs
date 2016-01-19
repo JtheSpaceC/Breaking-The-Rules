@@ -31,8 +31,7 @@ public class RPGEndOfLevel : MonoBehaviour {
 
 		int total = (RPGelements.rpgElements.shotsFired * 1) + (int)(RPGelements.rpgElements.damageTaken * 2) 
 			- (int)(RPGelements.rpgElements.adrenalineFound * 1);
-		if (total < 0)
-			total = 0;
+
 		totalXPLoss = (int)total / 10;
 		if (totalXPLoss < 0)
 			totalXPLoss = 0;

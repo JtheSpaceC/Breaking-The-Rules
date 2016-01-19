@@ -8,7 +8,7 @@ public class ClickToPlay : MonoBehaviour {
 	[Tooltip("Set true if you want the game to keep playing even if it loses focus.")]
 	public bool allowedRunInBackground = true;
 
-	public bool allowedToPause = true;
+	[HideInInspector] public bool allowedToPause = true;
 	public bool escCanQuit = true;
 	public bool rCanRestart = true;
 	bool paused = false;
@@ -50,42 +50,19 @@ public class ClickToPlay : MonoBehaviour {
 	{
 		if(allowedToPause && Input.GetKeyDown(KeyCode.Escape))
 		{
-			if(!paused)
-			{
-				Time.timeScale = 0;
-				paused = true;
-				mouseCursor.SetActive(false);
-				playerGun.SetActive(false);
-				if(pauseScreen != null)
-					pauseScreen.SetActive(true);
-			}
-			else if(paused)
-			{
-				Time.timeScale = 1;
-				paused = false;
-				mouseCursor.SetActive(true);
-				playerGun.SetActive(true);
-				if(pauseScreen != null)
-					pauseScreen.SetActive(false);
-			}
-			
+			TogglePause ();			
 		}
 		
 		if (escCanQuit && Input.GetKeyDown (KeyCode.Escape))
 			QuitGame ();
 		
-		try{
-		if ((paused || _MANAGER.instance.gameOver) && rCanRestart && Input.GetKeyDown(KeyCode.R))
-		{
-			try{GameObject.Find("RPG elements").GetComponent<RPGelements>().ResetToFirstLevel();}
-			catch{			}
 
-			Time.timeScale = 1;
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		}
-		}catch{
+		if (rCanRestart && (paused || _MANAGER.instance.gameOver) && Input.GetKeyDown(KeyCode.R))
+		{
+			Restart ();
 		}
 	}
+
 
 	public void LoadLevel(int whichLevel)
 	{
@@ -109,6 +86,33 @@ public class ClickToPlay : MonoBehaviour {
 		}
 	}
 
+	public void TogglePause ()
+	{
+		if (!paused) {
+			Time.timeScale = 0;
+			paused = true;
+			mouseCursor.SetActive (false);
+			playerGun.SetActive (false);
+			if (pauseScreen != null)
+				pauseScreen.SetActive (true);
+		}
+		else
+			if (paused) {
+				Time.timeScale = 1;
+				paused = false;
+				mouseCursor.SetActive (true);
+				playerGun.SetActive (true);
+				if (pauseScreen != null)
+					pauseScreen.SetActive (false);
+			}
+	}
+
+	public void Restart ()
+	{
+		FindObjectOfType<RPGelements> ().ResetToFirstLevel ();
+		Time.timeScale = 1;
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+	}
 
 	public void QuitGame()
 	{		

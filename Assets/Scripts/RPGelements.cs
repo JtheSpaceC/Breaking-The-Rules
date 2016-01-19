@@ -16,7 +16,8 @@ public class RPGelements : MonoBehaviour {
 	public float damageTaken = 0;
 	public float adrenalineFound = 0;
 	public float endingHealth;
-	public int endingAmmo;
+	public int startingAmmo = 90;
+	[HideInInspector] public int endingAmmo;
 
 	public float accuracyStat = 100;
 	public float damageStat = 100;
@@ -50,6 +51,7 @@ public class RPGelements : MonoBehaviour {
 			Destroy(gameObject);
 			return;
 		}
+		endingAmmo = startingAmmo;
 		RecalculateStats ();
 		endingHealth = GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().maxHealth;
 	}

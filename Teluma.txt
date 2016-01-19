@@ -1,12 +1,9 @@
-* Low frame rate
-
 * Enemy reaction times too fast
-* Eliminate 'R' to restart
-* If 'total' adrenaline cancels others, show the positive number, then 0 XP loss
 * Clamp left/right look distance in full screen view
-* Player Layer FOW for rooms you haven't been to
-* Need black fade as elevator drops
-* Need fade in to happen a bit faster (towards its end)
+* Particles where bullets hit
+* Investigate guards outside the elevator
+* Ability to reassign lost points at the end
+* Low frame rate
 
 
 -----------
@@ -43,6 +40,7 @@ COULD HAVE
 * Alternate exits through vents or stairs to in-between levels
 * Voice over
 * Stealth ranks
+* Fog of War
 
 
 -------
@@ -62,6 +60,8 @@ Teluma room
 Persistence / saving
 
 Alert enemy triggers enemy alerts nearby
+
+Enemies react to bodies
 
 Set up a 2nd graphnode for sounds only? Or just be more explicit in stealth script to ray through ignorables
 
@@ -85,16 +85,17 @@ Workstation
 
 STORY
 -----
-You could be an assault team sent to retrieve an algorithim from the bottom dungeon. The TELUMA Algorithm. You go down all the floors, get it, then return up all floors (same or different?)
+You could be an assault team sent to retrieve an algorithim from the bottom dungeon. 
+The TELUMA Algorithm. You go down all the floors, get it, then return up all floors (same or different?)
 
 
 FEATURES
 ---------
 Allies won't fire until a shot has been fired already
-Hack door mechanic to lock.
+Hack door mechanic to lock. Hacking skill
 refresh the screenlock if you click the screen
 Wave spawning/alarms
-The number of enemy shots fired dictates how much xp you lose
+
 
 AUDIO
 -----
@@ -104,9 +105,7 @@ more dying sound(s) for enemies
 blood splat (might be good)
 more hit sounds
 longer reload noise
-
 footsteps
-
 
 
 WISHLIST

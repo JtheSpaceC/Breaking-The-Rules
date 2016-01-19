@@ -44,7 +44,7 @@ public class Shooting : MonoBehaviour {
 	public float reloadTime = 1;
 	public Text ammoText;
 	public int ammoGun = 30;
-	public int ammoReserve = 60;
+	[HideInInspector] public int ammoReserve;
 	public AudioClip reloadNoise;
 	public AudioClip ammoOutNoise;
 	AudioClip shootNoise;
@@ -84,14 +84,15 @@ public class Shooting : MonoBehaviour {
 
 		if(playerControlled)
 		{
-			UpdateAmmoText();
 			accuracy = RPGelements.rpgElements.accuracyStat;
 			damagePerShot = RPGelements.rpgElements.damage;
+			ammoReserve = RPGelements.rpgElements.endingAmmo - ammoGun;
 
 			if(reloadSlider != null)
 			{
 				reloadSlider.gameObject.SetActive(false);
 			}
+			UpdateAmmoText();
 		}
 	}
 

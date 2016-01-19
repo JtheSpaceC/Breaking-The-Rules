@@ -11,6 +11,7 @@ public class _MANAGER : MonoBehaviour {
 
 	[Header("For Testing")]
 	public bool doLevelFadeInThing = true;
+	public bool doLevelFadeOutThing = true;
 	public bool hackCamsCheatActive = false;
 
 	[HideInInspector]public GameObject player;
@@ -39,8 +40,6 @@ public class _MANAGER : MonoBehaviour {
 	[HideInInspector] public float startTime;
 	[HideInInspector] public float levelStartTime;
 
-	public bool fadingIn = false;
-	public bool fadingOut = false;
 	public float delayBeforeFadeStart = 2f;
 
 	public bool gameOver = false;
@@ -101,7 +100,6 @@ public class _MANAGER : MonoBehaviour {
 
 	IEnumerator DoLevelFadeIn()
 	{
-		fadingIn = true;
 		blackoutPanel.gameObject.SetActive (true);
 		blackOutPanelColor = blackoutPanel.color;
 		titleImageColor = titleImage.color;
@@ -109,11 +107,15 @@ public class _MANAGER : MonoBehaviour {
 
 		yield return new WaitForSeconds(delayBeforeFadeStart);
 
+		//float i = 0; //this is to ramp up the rate of fade in the following function
+
 		while(blackoutPanel.color.a != 0)
 		{
-			Color newColor = Color.Lerp (blackOutPanelColor, Color.clear, (Time.time - levelStartTime - startTime) / fadeInOutTime);
+			//i+= Time.deltaTime/fadeInOutTime;
+
+			Color newColor = Color.Lerp (blackOutPanelColor, Color.clear, (Time.time - levelStartTime - startTime) /*+i*/ / fadeInOutTime);
 			blackoutPanel.color = newColor;
-			Color newColor2 = Color.Lerp (titleImageColor, Color.clear, (Time.time - levelStartTime - startTime) / fadeInOutTime);
+			Color newColor2 = Color.Lerp (titleImageColor, Color.clear, (Time.time - levelStartTime - startTime) /*+i*/ / fadeInOutTime);
 			titleImage.color = newColor2;
 			sublevelText.color = newColor2;
 			sublevelText.text = "Sublevel: "+ RPGelements.rpgElements.level;
@@ -121,10 +123,30 @@ public class _MANAGER : MonoBehaviour {
 			controlsText.color = newColor2;
 			yield return new WaitForEndOfFrame();
 		}
-
-		fadingIn = false;
 	}
 
+
+	public IEnumerator DoLevelFadeOut()
+	{
+		blackoutPanel.gameObject.SetActive(true);
+		blackoutPanel.color = Color.clear;
+
+		foreach(Transform child in blackoutPanel.transform.GetComponentsInChildren<Transform>())
+		{
+			if(child != blackoutPanel.transform)
+				child.gameObject.SetActive(false);
+		}
+		yield return new WaitForSeconds(delayBeforeFadeStart);
+
+		startTime = Time.time;
+
+		while(blackOutPanelColor.a <1)
+		{
+			Color newColor = Color.Lerp (Color.clear, Color.black, (Time.time - startTime)/ fadeInOutTime);
+			blackoutPanel.color = newColor;
+			yield return new WaitForEndOfFrame();
+		}
+	}
 
 	public void PlayerCanStart()
 	{
@@ -165,8 +187,16 @@ public class _MANAGER : MonoBehaviour {
 		levelComplete.SetActive (true);
 		Cursor.visible = true;
 
-		yield return new WaitForSeconds (6.5f);
+		if(doLevelFadeOutThing)
+		{
+			StartCoroutine(DoLevelFadeOut());
 
+			yield return new WaitForSeconds (delayBeforeFadeStart + fadeInOutTime);
+		}
+		else
+		{
+			yield return null;
+		}
 		levelComplete.SetActive (false);
 		RPGelements.rpgElements.endingHealth = player.GetComponent<Health> ().health;
 		RPGelements.rpgElements.endingAmmo = player.GetComponentInChildren<Shooting> ().ammoGun + player.GetComponentInChildren<Shooting> ().ammoReserve;
@@ -176,7 +206,6 @@ public class _MANAGER : MonoBehaviour {
 
 	public void EndLevel()
 	{
-		Debug.Log("I must have been clicked");
 		RPGelements.rpgElements.level++;
 		RPGelements.rpgElements.hasKey = false;
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
@@ -187,6 +216,8 @@ public class _MANAGER : MonoBehaviour {
 		gameOver = true;
 
 		gameOverCanvas.SetActive (true);
+		Cursor.visible = true;
+
 		gameOverCanvas.transform.FindChild ("Panel").FindChild ("Extra Text").GetComponent<Text> ().text =
 			"You reached Sublevel: " + RPGelements.rpgElements.level + "\n\n" +
 			"Press 'R' to Restart";

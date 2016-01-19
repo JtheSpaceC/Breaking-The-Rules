@@ -3,6 +3,7 @@ using System.Collections;
 
 public class FogOfWar : MonoBehaviour {
 
+	public SpriteRenderer myRenderer;
 	public SpriteRenderer childRenderer;
 	public bool canTurnOffFog = true;
 
@@ -10,7 +11,7 @@ public class FogOfWar : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
-			childRenderer.enabled = false;
+			TurnOffFog();
 		}
 	}
 
@@ -29,6 +30,7 @@ public class FogOfWar : MonoBehaviour {
 
 	public void TurnOffFog()
 	{
+		myRenderer.enabled = false;
 		childRenderer.enabled = false;
 	}
 }

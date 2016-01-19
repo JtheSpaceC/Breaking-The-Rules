@@ -4,6 +4,7 @@
 * Investigate guards outside the elevator
 * Low frame rate
 
+
 -----------
 MOSCOW LIST
 -----------
@@ -20,6 +21,7 @@ MUST HAVE
 * UI hints on loading screens
 * Better shooting mechanics (maybe physical bullets)
 * Enemies respond to corpses (alarm & serach state). Hide corpses. Enemies lose track of you.
+* More death animations
 
 SHOULD HAVE
 

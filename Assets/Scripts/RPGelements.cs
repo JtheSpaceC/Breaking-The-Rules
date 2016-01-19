@@ -18,6 +18,7 @@ public class RPGelements : MonoBehaviour {
 	public float endingHealth;
 	public int startingAmmo = 90;
 	[HideInInspector] public int endingAmmo;
+	public int maxAmmoPlayerCanCarry = 120;
 
 	public float accuracyStat = 100;
 	public float damageStat = 100;

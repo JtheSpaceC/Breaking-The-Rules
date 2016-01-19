@@ -58,6 +58,7 @@ public class Soldier : MonoBehaviour {
 	[Tooltip("How long after seeing an enemy will they check again to confirm sighting")]
 	[Range(0.1f, 3)]
 	public float reactionTime = 0.5f;
+	public GameObject questionMark;
 
 	public float baseAccuracy = 50;
 	public Transform targetToShoot;
@@ -120,6 +121,10 @@ public class Soldier : MonoBehaviour {
 		postCombatStates = new stateMachine[] {stateMachine.CheckingBody, stateMachine.Searching};
 	}
 
+	void Start()
+	{
+		questionMark.SetActive(false);
+	}
 
 	void Update () 
 	{
@@ -282,6 +287,7 @@ public class Soldier : MonoBehaviour {
 	{
 		StopCoroutine("CheckAmIAnIdiot");
 		iAmCurious = false;
+		questionMark.SetActive(false);
 
 		float totalWeight = 0;
 		float weightCheck = 0;
@@ -350,7 +356,7 @@ public class Soldier : MonoBehaviour {
 	}
 
 
-	void GuardingState()
+	public void GuardingState()
 	{
 		if(switchingStates)
 		{
@@ -432,7 +438,7 @@ public class Soldier : MonoBehaviour {
 							iAmCurious = true;
 							audioSource.clip = curiousSounds[Random.Range(0, curiousSounds.Length)]; 
 							audioSource.Play();
-							//TODO: play Curious animation
+							questionMark.SetActive(true);
 						}
 						else
 						{
@@ -440,6 +446,7 @@ public class Soldier : MonoBehaviour {
 
 							float[] weights = new float[]{33.33f, 0, 0};
 
+							questionMark.SetActive(false);
 							state = ReturnANewState(combatStates, weights);
 						}
 					} 

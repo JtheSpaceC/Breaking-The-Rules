@@ -38,6 +38,8 @@ public class LevelGenerator : MonoBehaviour {
 
 	[HideInInspector] public int noOfEnemies = 0;
 
+	[HideInInspector] public List<GameObject> securityRoomGuards = new List<GameObject>();
+
 
 	void Start () 
 	{
@@ -302,7 +304,7 @@ public class LevelGenerator : MonoBehaviour {
 
 	void GiveKeycard()
 	{
-		GameObject keyholder = secRoom.furniture.transform.FindChild("enemy").FindChild("Enemy").gameObject;
+		GameObject keyholder = securityRoomGuards[Random.Range(0, securityRoomGuards.Count)];
 		keyholder.GetComponent<Health>().myLoot.Add(keyPrefab);
 	}
 

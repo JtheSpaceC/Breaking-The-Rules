@@ -1,7 +1,4 @@
-* Particles where bullets hit
-* Investigate guards outside the elevator
 * Low frame rate
-* Question Mark anim!
 * Make curious enemies stop and look for a bit, or search
 
 -----------

@@ -213,13 +213,15 @@
 			foreach(GameObject obj in enemies)
 			{
 				if(!leaveOutSomeObjects || (leaveOutSomeObjects && Random.Range (0,2) >= 1)){
-					GameObject prefab = Instantiate(enemyPrefab, obj.transform.position, obj.transform.rotation)as GameObject;
-					prefab.name = "Enemy";
-					GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelGenerator>().enemies.Add (prefab);
+					GameObject prefab = Instantiate(enemyPrefab, obj.transform.position, Quaternion.identity)as GameObject;
+					prefab.transform.parent = null;
+					prefab.name = "Enemy";					
+					FindObjectOfType<LevelGenerator>().enemies.Add (prefab);
+					FindObjectOfType<LevelGenerator>().securityRoomGuards.Add (prefab);
 					prefab.GetComponent<Soldier>().state = Soldier.stateMachine.Guarding;
-					prefab.transform.SetParent(obj.transform, true);}
-			}
-			
+					prefab.GetComponent<Soldier>().GuardingState();
+					prefab.GetComponent<Soldier>().targetLook = transform.position;}
+			}			
 	}
 
 		//use in editor to remove visuals (real game assets) from placeholder-empty-Gameobjects if they've been left on

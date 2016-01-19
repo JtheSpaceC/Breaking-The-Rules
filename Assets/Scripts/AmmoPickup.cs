@@ -28,8 +28,8 @@ public class AmmoPickup : MonoBehaviour {
 			int ammo = other.GetComponentInChildren<Shooting>().ammoReserve;
 
 			ammo += (int)(ammoAmount * Random.Range(0.5f, 2));
-			if(ammo >= 120)
-				ammo = 120;
+			if(ammo >= RPGelements.rpgElements.maxAmmoPlayerCanCarry)
+				ammo = RPGelements.rpgElements.maxAmmoPlayerCanCarry;
 
 			other.GetComponentInChildren<Shooting>().ammoReserve = ammo;
 			other.GetComponentInChildren<Shooting>().UpdateAmmoText();

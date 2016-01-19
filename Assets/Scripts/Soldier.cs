@@ -56,6 +56,7 @@ public class Soldier : MonoBehaviour {
 	[HideInInspector] public bool iAmCurious = false;
 
 	[Tooltip("How long after seeing an enemy will they check again to confirm sighting")]
+	[Range(0.1f, 3)]
 	public float reactionTime = 0.5f;
 
 	public float baseAccuracy = 50;
@@ -76,10 +77,6 @@ public class Soldier : MonoBehaviour {
 	bool waiting = false;
 	float timerA = 0;
 
-	[Tooltip("How often an AI on Patrol will check its surroundings for intruders.")]
-	public float examineAreaRefreshTime = 0.5f;
-	//[Tooltip("How long a player must be in sight before alert is started.")]
-	//public float seeTimeBeforeAlert = 1f;
 	LayerMask suspiciousLayers;
 	LayerMask sightBlockLayers;
 	BoxCollider2D fovCollider;
@@ -346,7 +343,7 @@ public class Soldier : MonoBehaviour {
 
 		//for examining area.
 		timerA += Time.deltaTime;
-		if(timerA >= examineAreaRefreshTime)
+		if(timerA >= reactionTime)
 		{
 			ExamineArea();
 		}
@@ -370,7 +367,7 @@ public class Soldier : MonoBehaviour {
 
 		//for examining area.
 		timerA += Time.deltaTime;
-		if(timerA >= examineAreaRefreshTime)
+		if(timerA >= reactionTime)
 		{
 			ExamineArea();
 		}

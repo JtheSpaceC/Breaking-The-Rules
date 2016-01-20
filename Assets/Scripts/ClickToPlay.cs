@@ -83,7 +83,6 @@ public class ClickToPlay : MonoBehaviour {
 		while(!async.isDone)
 		{
 			loadingSlider.value = async.progress;
-			Debug.Log(async.progress);
 			yield return null;
 		}
 	}
@@ -124,10 +123,12 @@ public class ClickToPlay : MonoBehaviour {
 		#endif
 
 		#if UNITY_WEBPLAYER
+		Time.timeScale = 1;
 		SceneManager.LoadScene(0);		
 		#endif
 
 		#if UNITY_WEBGL
+		Time.timeScale = 1;
 		SceneManager.LoadScene(0);		
 		#endif
 
@@ -135,6 +136,7 @@ public class ClickToPlay : MonoBehaviour {
 		#if UNITY_EDITOR
 		//Stop playing the scene
 		UnityEditor.EditorApplication.isPlaying = false;
+
 		#endif	
 	}
 

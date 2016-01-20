@@ -241,10 +241,9 @@ public class Shooting : MonoBehaviour {
 				pos1 = shootPoint;
 			}
 
-			Instantiate(_MANAGER.instance.bulletHitParticlesPrefab, (Vector3)pos1, Quaternion.identity);
-
 			ammoGun --;
-			UpdateAmmoText();		}
+			UpdateAmmoText();		
+		}
 
 		else //if not player controlled, so, AI
 		{
@@ -271,6 +270,9 @@ public class Shooting : MonoBehaviour {
 			}
 			catch{pos1 = shootPoint;}
 		}
+
+		Instantiate(_MANAGER.instance.bulletHitParticlesPrefab, (Vector3)pos1, Quaternion.identity);
+
 
 		//effects
 		audioSource.Play();

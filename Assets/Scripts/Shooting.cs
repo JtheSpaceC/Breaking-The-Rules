@@ -11,6 +11,8 @@ public class Shooting : MonoBehaviour {
 	Soldier soldierScript;
 	Stealth stealthScript;
 
+	ObjectPoolerScript bulletHitParticlesPooler;
+
 	[Tooltip("Set True if this is the player's gun")] 
 	public bool playerControlled = false;
 	public bool hasLaser = false;
@@ -52,6 +54,8 @@ public class Shooting : MonoBehaviour {
 
 	void Awake()
 	{
+		bulletHitParticlesPooler = GameObject.Find("Bullet Hit Particles").GetComponent<ObjectPoolerScript>();
+
 		if (playerControlled) 
 		{
 		} 
@@ -271,7 +275,6 @@ public class Shooting : MonoBehaviour {
 			catch{pos1 = shootPoint;}
 		}
 
-		Instantiate(_MANAGER.instance.bulletHitParticlesPrefab, (Vector3)pos1, Quaternion.identity);
 
 
 		//effects
@@ -282,6 +285,10 @@ public class Shooting : MonoBehaviour {
 		gunLine.SetPosition (1, pos1);
 		
 		Invoke ("DisableEffects", effectsDisplayTime);
+
+		GameObject particleEffect = bulletHitParticlesPooler.GetPooledObject();
+		particleEffect.transform.position = pos1;
+		particleEffect.SetActive(true);
 
 		//reset timer
 		timer = 0;

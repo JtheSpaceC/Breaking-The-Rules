@@ -4,14 +4,28 @@ using System.Collections;
 public class DestroyAfterTime : MonoBehaviour {
 
 	public float howMuchTime = 1;
+	public enum DestroyOrDisable {Destroy, Disable};
+	public DestroyOrDisable myBehaviour;
 
-	void Start ()
+	void OnEnable ()
 	{
 		Invoke("DestroyNow", howMuchTime);
 	}
 	
 	void DestroyNow()
 	{
-		Destroy(gameObject);
+		if(myBehaviour == DestroyOrDisable.Destroy)
+		{
+			Destroy(gameObject);
+		}
+		else if(myBehaviour == DestroyOrDisable.Disable)
+		{
+			gameObject.SetActive(false);
+		}
+	}
+
+	void OnDisable()
+	{
+		CancelInvoke();
 	}
 }

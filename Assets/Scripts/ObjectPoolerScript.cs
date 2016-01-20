@@ -56,6 +56,7 @@ public class ObjectPoolerScript : MonoBehaviour {
 		{
 			GameObject obj = (GameObject)Instantiate(pooledObject);
 			pooledObjects.Add(obj);
+			obj.transform.parent = transform;
 			return obj;
 		}
 		

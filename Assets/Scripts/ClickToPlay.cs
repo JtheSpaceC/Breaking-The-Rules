@@ -56,10 +56,12 @@ public class ClickToPlay : MonoBehaviour {
 		if (escCanQuit && Input.GetKeyDown (KeyCode.Escape))
 			QuitGame ();
 		
-
-		if (rCanRestart && (paused || _MANAGER.instance.gameOver) && Input.GetKeyDown(KeyCode.R))
+		if(_MANAGER.instance)
 		{
-			Restart ();
+			if (rCanRestart && (paused || _MANAGER.instance.gameOver) && Input.GetKeyDown(KeyCode.R))
+			{
+				Restart ();
+			}
 		}
 	}
 

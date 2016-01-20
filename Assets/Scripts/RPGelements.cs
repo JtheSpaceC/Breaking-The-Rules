@@ -85,13 +85,13 @@ public class RPGelements : MonoBehaviour {
 		int num;
 
 		if (retries != 0)
-			num = (int)Random.Range (0, 12);
+			num = (int)Random.Range (0, 13);
 		else
 			num = 0;
 
 		switch(num)
 		{
-		default: briefingText.text = "Something went wrong.";
+		default: briefingText.text = "<Something went wrong>";
 			break;
 		case 0: briefingText.text = "The elevator has stopped. You need a KEYCARD to take the elevator deeper into the installation.\n" +
 			"Find the SECURITY ROOM and take the keycard from one of the guards. Then RETURN to the elevator.\n" +
@@ -127,6 +127,9 @@ public class RPGelements : MonoBehaviour {
 		case 11: briefingText.text = "You can see and shoot whatever your gun's laser can reach. If the laser stops on an object like a door or closet, " +
 			"this means it is tall and you can use it as cover or hide behind it.";
 			break;
+		case 12: briefingText.text = "Enemies' guns use palm-print recognition. You won't be able to use them or take AMMO from them. Look for ammo in " +
+		"Storage Cabinets.";
+		break;
 		}
 	}
 

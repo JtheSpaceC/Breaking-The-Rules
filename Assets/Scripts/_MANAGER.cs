@@ -106,6 +106,7 @@ public class _MANAGER : MonoBehaviour {
 		blackoutPanel.gameObject.SetActive (true);
 		blackOutPanelColor = blackoutPanel.color;
 		titleImageColor = titleImage.color;
+		sublevelText.text = "Sublevel: "+ RPGelements.rpgElements.level;
 		AudioSource.PlayClipAtPoint (elevatorStopping, player.transform.position);
 
 		yield return new WaitForSeconds(delayBeforeFadeStart);
@@ -121,7 +122,6 @@ public class _MANAGER : MonoBehaviour {
 			Color newColor2 = Color.Lerp (titleImageColor, Color.clear, (Time.time - levelStartTime - startTime) /*+i*/ / fadeInOutTime);
 			titleImage.color = newColor2;
 			sublevelText.color = newColor2;
-			sublevelText.text = "Sublevel: "+ RPGelements.rpgElements.level;
 			missionText.color = newColor2;
 			controlsText.color = newColor2;
 			yield return new WaitForEndOfFrame();

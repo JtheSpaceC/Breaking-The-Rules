@@ -222,10 +222,24 @@ public class _MANAGER : MonoBehaviour {
 		Cursor.visible = true;
 
 		gameOverCanvas.transform.FindChild ("Panel").FindChild ("Extra Text").GetComponent<Text> ().text =
-			"You reached Sublevel: " + RPGelements.rpgElements.level + "\n\n" +
-			"Press 'R' to Restart";
+			"You reached Sublevel: " + RPGelements.rpgElements.level;
 		RPGelements.rpgElements.hasKey = false;
 		Camera.main.GetComponent<ClickToPlay> ().allowedToPause = false;
+
+		StartCoroutine(ActivateGameOverButtons());
+	}
+
+	IEnumerator ActivateGameOverButtons()
+	{
+		Button[] buttons = gameOverCanvas.transform.FindChild("Panel/Buttons Panel").GetComponentsInChildren<Button>();
+		print(buttons.Length);
+
+		yield return new WaitForSeconds(1f);
+
+		foreach(Button button in buttons)
+		{
+			button.interactable = true;
+		}
 	}
 
 	void MakeAllowedToPause()

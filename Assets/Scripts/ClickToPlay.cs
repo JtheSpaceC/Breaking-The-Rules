@@ -125,6 +125,10 @@ public class ClickToPlay : MonoBehaviour {
 		SceneManager.LoadScene(0);		
 		#endif
 
+		#if UNITY_WEBGL
+		SceneManager.LoadScene(0);		
+		#endif
+
 		//If we are running in the editor
 		#if UNITY_EDITOR
 		//Stop playing the scene

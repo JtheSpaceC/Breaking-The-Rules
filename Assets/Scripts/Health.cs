@@ -154,6 +154,11 @@ public class Health : MonoBehaviour {
 		gameObject.GetComponent<Collider2D> ().enabled = false;
 		Instantiate(deathAnimPrefab, transform.position, transform.rotation);
 		healthSlider.gameObject.SetActive(false);
+		Invoke("CallGameOver", 1.5f); 
+	}
+
+	void CallGameOver()
+	{
 		_MANAGER.instance.GameOver ();
 	}
 

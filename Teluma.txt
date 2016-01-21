@@ -140,6 +140,7 @@ Security cameras and global alerts
 Proper system of debuffs, with a point assignable individually, instead of lumping it to one stat
 Max rooms feature that increases per level
 AI who run into each other can start a conversation
+Rooms (labs) that conatain a powerup but a random one, with a low chance to spawn eg. disintegration gun
 
 
 ROB

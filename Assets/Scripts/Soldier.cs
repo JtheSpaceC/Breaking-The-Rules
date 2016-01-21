@@ -458,6 +458,10 @@ public class Soldier : MonoBehaviour {
 				}
 			}
 		}
+		else
+		{
+			questionMark.SetActive(false);
+		}
 		timerA = 0;
 	}
 

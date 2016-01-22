@@ -126,6 +126,7 @@ public class _MANAGER : MonoBehaviour {
 			controlsText.color = newColor2;
 			yield return new WaitForEndOfFrame();
 		}
+		blackOutPanelColor = Color.clear;
 	}
 
 
@@ -143,8 +144,11 @@ public class _MANAGER : MonoBehaviour {
 
 		startTime = Time.time;
 
+			print(blackOutPanelColor.a);
+
 		while(blackOutPanelColor.a <1)
 		{
+		print("Tests");
 			Color newColor = Color.Lerp (Color.clear, Color.black, (Time.time - startTime)/ fadeInOutTime);
 			blackoutPanel.color = newColor;
 			yield return new WaitForEndOfFrame();

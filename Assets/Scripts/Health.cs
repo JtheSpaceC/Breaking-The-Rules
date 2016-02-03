@@ -161,8 +161,8 @@ public class Health : MonoBehaviour {
 
 		Analytics.CustomEvent("gameOver", new Dictionary<string, object>
 			{
-				{"Ammo remaining", shootScript.ammoReserve + shootScript.ammoGun},
-				{"Level died on", RPGelements.instance.level}
+				{"Level died on", RPGelements.instance.level},
+				{"Ammo remaining", shootScript.ammoReserve + shootScript.ammoGun}
 			});
 	}
 

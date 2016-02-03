@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
-using System.Collections;
+using System.Collections.Generic;
 
 public class HackingZone : MonoBehaviour {
 	
@@ -99,5 +100,11 @@ public class HackingZone : MonoBehaviour {
 		GetComponent<BoxCollider2D> ().enabled = false;
 		Destroy(gameObject, 1.5f);
 		audioSource.Stop ();
+
+		Analytics.CustomEvent("Hacked Level Cams", new Dictionary<string, object>
+			{
+				{"Hacked Level Cams of Sublevel: ", RPGelements.instance.level},
+				{"Time to hack: ", Time.time}
+			});
 	}
 }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class _MANAGER : MonoBehaviour {
@@ -216,6 +218,13 @@ public class _MANAGER : MonoBehaviour {
 		RPGelements.instance.level++;
 		RPGelements.instance.hasKey = false;
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+
+		Analytics.CustomEvent("Level Complete", new Dictionary<string, object>
+			{
+				{"Level completed: ", RPGelements.instance.level},
+				{"Time in session", Time.time},
+				{"XP loss: ", FindObjectOfType<RPGEndOfLevel>().totalXPLoss}
+			});
 	}
 
 	public void GameOver()

@@ -22,7 +22,7 @@ public class RPGEndOfLevel : MonoBehaviour {
 
 	public GameObject continueButton;
 
-	int totalXPLoss;
+	[HideInInspector] public int totalXPLoss;
 
 	bool recordedInitialStats = false;
 

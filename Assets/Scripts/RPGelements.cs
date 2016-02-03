@@ -4,7 +4,7 @@ using System.Collections;
 
 public class RPGelements : MonoBehaviour {
 
-	public static RPGelements rpgElements; 
+	public static RPGelements instance; 
 	public bool persistAfterLoad = true;
 
 	public int telumaOnLevel = 10;
@@ -38,16 +38,16 @@ public class RPGelements : MonoBehaviour {
 
 	void Awake()
 	{
-		if (persistAfterLoad && rpgElements == null)
+		if (persistAfterLoad && instance == null)
 		{
-			rpgElements = this;
+			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
-		else if(rpgElements == null && !persistAfterLoad)
+		else if(instance == null && !persistAfterLoad)
 		{
-			rpgElements = this;
+			instance = this;
 		}
-		else if (rpgElements != this)
+		else if (instance != this)
 		{
 			Destroy(gameObject);
 			return;

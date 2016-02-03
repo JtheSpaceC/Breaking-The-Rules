@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class ClickToPlay : MonoBehaviour {
@@ -27,6 +29,8 @@ public class ClickToPlay : MonoBehaviour {
 
 	[Header("Loading Bar stuff")]
 	public Slider loadingSlider;
+
+	int numRestarts;
 
 
 	void Awake()
@@ -112,6 +116,7 @@ public class ClickToPlay : MonoBehaviour {
 	{
 		FindObjectOfType<RPGelements> ().ResetToFirstLevel ();
 		Time.timeScale = 1;
+		numRestarts ++;
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
 
@@ -138,6 +143,16 @@ public class ClickToPlay : MonoBehaviour {
 		UnityEditor.EditorApplication.isPlaying = false;
 
 		#endif	
+
+		Shooting playerShootScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().shootScript;
+
+		Analytics.CustomEvent("Quit", new Dictionary<string, object>
+			{
+				{"Level quit on", RPGelements.instance.level},
+				{"Ammo remaining", playerShootScript.ammoReserve + playerShootScript.ammoGun},
+				{"Time in session", Time.time},
+				{"Restarts", numRestarts}
+			});
 	}
 
 	public void NextSlide(int fwdOrBackInt)

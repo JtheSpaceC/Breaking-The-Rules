@@ -30,24 +30,24 @@ public class RPGEndOfLevel : MonoBehaviour {
 	void Start()
 	{
 		statsText.text = 
-			"Enemy Shots Fired = " + RPGelements.rpgElements.shotsFired + "\n" +
-			"Damage Taken = " + (int)RPGelements.rpgElements.damageTaken + "\n" +
-			"Adrenaline Found = " + RPGelements.rpgElements.adrenalineFound + "\n" +
+			"Enemy Shots Fired = " + RPGelements.instance.shotsFired + "\n" +
+			"Damage Taken = " + (int)RPGelements.instance.damageTaken + "\n" +
+			"Adrenaline Found = " + RPGelements.instance.adrenalineFound + "\n" +
 			"_______________________\n" +
 			"Total...\n" +
 			"XP Loss";
 
-		int total = (RPGelements.rpgElements.shotsFired * 1) + (int)(RPGelements.rpgElements.damageTaken * 2) 
-			- (int)(RPGelements.rpgElements.adrenalineFound * 1);
+		int total = (RPGelements.instance.shotsFired * 1) + (int)(RPGelements.instance.damageTaken * 2) 
+			- (int)(RPGelements.instance.adrenalineFound * 1);
 
 		totalXPLoss = (int)total / 10;
 		if (totalXPLoss < 0)
 			totalXPLoss = 0;
 
 		statsTotalsText.text =
-			"-" + RPGelements.rpgElements.shotsFired * 1 + "\n" + 
-			"-" + (int)RPGelements.rpgElements.damageTaken * 2 + "\n" + 
-			"+" + RPGelements.rpgElements.adrenalineFound + "\n" + 
+			"-" + RPGelements.instance.shotsFired * 1 + "\n" + 
+			"-" + (int)RPGelements.instance.damageTaken * 2 + "\n" + 
+			"+" + RPGelements.instance.adrenalineFound + "\n" + 
 			"___\n" +
 			(total * -1) + "\n" +
 			(totalXPLoss * -1) + " XP";
@@ -65,32 +65,32 @@ public class RPGEndOfLevel : MonoBehaviour {
 
 	public void UpdateTexts()
 	{
-		damageText.text = "Damage (" + RPGelements.rpgElements.damageStat + ")";
-		accuracyText.text = "Accuracy (" + RPGelements.rpgElements.accuracyStat + ")";
-		maxHealthText.text = "Max Health (" + RPGelements.rpgElements.maxHealthStat + ")";
-		runningSpeedText.text = "Running Speed (" + RPGelements.rpgElements.runningSpeedStat + ")";
-		reloadSpeedText.text = "Reload Speed (" + RPGelements.rpgElements.reloadSpeedStat + ")";
+		damageText.text = "Damage (" + RPGelements.instance.damageStat + ")";
+		accuracyText.text = "Accuracy (" + RPGelements.instance.accuracyStat + ")";
+		maxHealthText.text = "Max Health (" + RPGelements.instance.maxHealthStat + ")";
+		runningSpeedText.text = "Running Speed (" + RPGelements.instance.runningSpeedStat + ")";
+		reloadSpeedText.text = "Reload Speed (" + RPGelements.instance.reloadSpeedStat + ")";
 	}
 
 
 	void DeactivateIneligibleButtons(int xpLoss)
 	{
-		if (xpLoss > RPGelements.rpgElements.accuracyStat)
+		if (xpLoss > RPGelements.instance.accuracyStat)
 			accuracyText.transform.parent.GetComponentInChildren<Button> ().interactable = false;
-		if (xpLoss > RPGelements.rpgElements.damageStat)
+		if (xpLoss > RPGelements.instance.damageStat)
 			damageText.transform.parent.GetComponentInChildren<Button> ().interactable = false;
-		if (xpLoss > RPGelements.rpgElements.maxHealthStat)
+		if (xpLoss > RPGelements.instance.maxHealthStat)
 			maxHealthText.transform.parent.GetComponentInChildren<Button> ().interactable = false;
-		if (xpLoss > RPGelements.rpgElements.runningSpeedStat)
+		if (xpLoss > RPGelements.instance.runningSpeedStat)
 			runningSpeedText.transform.parent.GetComponentInChildren<Button> ().interactable = false;
-		if (xpLoss > RPGelements.rpgElements.reloadSpeedStat)
+		if (xpLoss > RPGelements.instance.reloadSpeedStat)
 			reloadSpeedText.transform.parent.GetComponentInChildren<Button> ().interactable = false;
 	}
 
 	public void ReduceAccuracy()
 	{
 		DoInitialCheck();
-		RPGelements.rpgElements.accuracyStat -= totalXPLoss;
+		RPGelements.instance.accuracyStat -= totalXPLoss;
 		//DeactivateIneligibleButtons (999);
 		continueButton.SetActive(true);
 		accuracyText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = true;
@@ -99,7 +99,7 @@ public class RPGEndOfLevel : MonoBehaviour {
 	public void ReduceDamage()
 	{
 		DoInitialCheck();
-		RPGelements.rpgElements.damageStat -= totalXPLoss;
+		RPGelements.instance.damageStat -= totalXPLoss;
 		//DeactivateIneligibleButtons (999);
 		damageText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = true;
 		FinishOff();
@@ -107,7 +107,7 @@ public class RPGEndOfLevel : MonoBehaviour {
 	public void ReduceMaxHealth()
 	{
 		DoInitialCheck();
-		RPGelements.rpgElements.maxHealthStat -= totalXPLoss;
+		RPGelements.instance.maxHealthStat -= totalXPLoss;
 		//DeactivateIneligibleButtons (999);
 		maxHealthText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = true;
 		FinishOff();
@@ -115,7 +115,7 @@ public class RPGEndOfLevel : MonoBehaviour {
 	public void ReduceRunningSpeed()
 	{
 		DoInitialCheck();
-		RPGelements.rpgElements.runningSpeedStat -= totalXPLoss;
+		RPGelements.instance.runningSpeedStat -= totalXPLoss;
 		//DeactivateIneligibleButtons (999);
 		runningSpeedText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = true;
 		FinishOff();
@@ -123,7 +123,7 @@ public class RPGEndOfLevel : MonoBehaviour {
 	public void ReduceReloadSpeed()
 	{
 		DoInitialCheck();
-		RPGelements.rpgElements.reloadSpeedStat -= totalXPLoss;
+		RPGelements.instance.reloadSpeedStat -= totalXPLoss;
 		//DeactivateIneligibleButtons (999);
 		reloadSpeedText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = true;
 		FinishOff();
@@ -132,22 +132,22 @@ public class RPGEndOfLevel : MonoBehaviour {
 
 	void RecordStartingStats()
 	{
-		tempDamageStat = RPGelements.rpgElements.damageStat;
-		tempAccuracyStat = RPGelements.rpgElements.accuracyStat;
-		tempMaxHealthStat = RPGelements.rpgElements.maxHealthStat;
-		tempRunningSpeedStat = RPGelements.rpgElements.runningSpeedStat;
-		tempReloadSpeed = RPGelements.rpgElements.reloadSpeedStat;
+		tempDamageStat = RPGelements.instance.damageStat;
+		tempAccuracyStat = RPGelements.instance.accuracyStat;
+		tempMaxHealthStat = RPGelements.instance.maxHealthStat;
+		tempRunningSpeedStat = RPGelements.instance.runningSpeedStat;
+		tempReloadSpeed = RPGelements.instance.reloadSpeedStat;
 
 		recordedInitialStats = true;
 	}
 
 	void ResetToStartingStats()
 	{
-		RPGelements.rpgElements.damageStat = tempDamageStat;
-		RPGelements.rpgElements.accuracyStat = tempAccuracyStat;
-		RPGelements.rpgElements.maxHealthStat = tempMaxHealthStat;
-		RPGelements.rpgElements.runningSpeedStat = tempRunningSpeedStat;
-		RPGelements.rpgElements.reloadSpeedStat = tempReloadSpeed;
+		RPGelements.instance.damageStat = tempDamageStat;
+		RPGelements.instance.accuracyStat = tempAccuracyStat;
+		RPGelements.instance.maxHealthStat = tempMaxHealthStat;
+		RPGelements.instance.runningSpeedStat = tempRunningSpeedStat;
+		RPGelements.instance.reloadSpeedStat = tempReloadSpeed;
 
 		accuracyText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = false;
 		damageText.transform.parent.FindChild ("Tick Image").GetComponent<Image> ().enabled = false;

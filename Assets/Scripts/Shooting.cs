@@ -84,13 +84,13 @@ public class Shooting : MonoBehaviour {
 
 	void Start()
 	{
-		reloadTime = RPGelements.rpgElements.reloadTime;
+		reloadTime = RPGelements.instance.reloadTime;
 
 		if(playerControlled)
 		{
-			accuracy = RPGelements.rpgElements.accuracyStat;
-			damagePerShot = RPGelements.rpgElements.damage;
-			ammoReserve = RPGelements.rpgElements.endingAmmo - ammoGun;
+			accuracy = RPGelements.instance.accuracyStat;
+			damagePerShot = RPGelements.instance.damage;
+			ammoReserve = RPGelements.instance.endingAmmo - ammoGun;
 
 			if(reloadSlider != null)
 			{
@@ -297,7 +297,7 @@ public class Shooting : MonoBehaviour {
 		{
 			float[] acceptableNums = new float[]{1,1,1,4,7}; //this is only used by the NPCs
 			nextFire = (60 / firingRPM) * acceptableNums [Random.Range (1, 5)]; //this is only used by the NPCs
-			RPGelements.rpgElements.shotsFired++;
+			RPGelements.instance.shotsFired++;
 		}
 		else if(playerControlled)
 		{

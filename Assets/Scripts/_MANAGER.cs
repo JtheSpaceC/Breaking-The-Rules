@@ -31,8 +31,8 @@ public class _MANAGER : MonoBehaviour {
 	public Text sublevelText;
 	public Text missionText;
 	public Text controlsText;
-	public Text whichLevel1;
-	public Text whichLevel2;
+	public Text whichLevelText1;
+	public Text whichLevelText2;
 	public GameObject gameOverCanvas;
 	public GameObject levelComplete;
 
@@ -69,27 +69,27 @@ public class _MANAGER : MonoBehaviour {
 		startTime = delayBeforeFadeStart;
 		Invoke ("MakeAllowedToPause", delayBeforeFadeStart);
 
-		if(RPGelements.rpgElements.endingAmmo >= 30)
+		if(RPGelements.instance.endingAmmo >= 30)
 		{
 			playerShooting.ammoGun = 30;
-			playerShooting.ammoReserve = RPGelements.rpgElements.endingAmmo - playerShooting.ammoGun;
+			playerShooting.ammoReserve = RPGelements.instance.endingAmmo - playerShooting.ammoGun;
 		}
 		else
 		{
-			playerShooting.ammoGun = RPGelements.rpgElements.endingAmmo;
+			playerShooting.ammoGun = RPGelements.instance.endingAmmo;
 			playerShooting.ammoReserve = 0;
 		}
 		playerShooting.UpdateAmmoText ();
 
-		RPGelements.rpgElements.damageTaken = 0;
+		RPGelements.instance.damageTaken = 0;
 
-		RPGelements.rpgElements.HoloText ();
+		RPGelements.instance.HoloText ();
 
 		string text = "MISSION:\n" +
-			"Retrieve the TELUMA Algorithm from sublevel " + RPGelements.rpgElements.telumaOnLevel + ".";
+			"Retrieve the TELUMA Algorithm from sublevel " + RPGelements.instance.telumaOnLevel + ".";
 		
-		whichLevel1.text = text;
-		whichLevel2.text = text;
+		whichLevelText1.text = text;
+		whichLevelText2.text = text;
 
 		if(doLevelFadeInThing)
 		{
@@ -106,7 +106,7 @@ public class _MANAGER : MonoBehaviour {
 		blackoutPanel.gameObject.SetActive (true);
 		blackOutPanelColor = blackoutPanel.color;
 		titleImageColor = titleImage.color;
-		sublevelText.text = "Sublevel: "+ RPGelements.rpgElements.level;
+		sublevelText.text = "Sublevel: "+ RPGelements.instance.level;
 		AudioSource.PlayClipAtPoint (elevatorStopping, player.transform.position);
 
 		yield return new WaitForSeconds(delayBeforeFadeStart);
@@ -205,16 +205,16 @@ public class _MANAGER : MonoBehaviour {
 			yield return null;
 		}
 		levelComplete.SetActive (false);
-		RPGelements.rpgElements.endingHealth = player.GetComponent<Health> ().health;
-		RPGelements.rpgElements.endingAmmo = player.GetComponentInChildren<Shooting> ().ammoGun + player.GetComponentInChildren<Shooting> ().ammoReserve;
+		RPGelements.instance.endingHealth = player.GetComponent<Health> ().health;
+		RPGelements.instance.endingAmmo = player.GetComponentInChildren<Shooting> ().ammoGun + player.GetComponentInChildren<Shooting> ().ammoReserve;
 
 		rpgStatsPanel.SetActive (true);
 	}
 
 	public void EndLevel()
 	{
-		RPGelements.rpgElements.level++;
-		RPGelements.rpgElements.hasKey = false;
+		RPGelements.instance.level++;
+		RPGelements.instance.hasKey = false;
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 
@@ -226,8 +226,8 @@ public class _MANAGER : MonoBehaviour {
 		Cursor.visible = true;
 
 		gameOverCanvas.transform.FindChild ("Panel").FindChild ("Extra Text").GetComponent<Text> ().text =
-			"You reached Sublevel: " + RPGelements.rpgElements.level;
-		RPGelements.rpgElements.hasKey = false;
+			"You reached Sublevel: " + RPGelements.instance.level;
+		RPGelements.instance.hasKey = false;
 		Camera.main.GetComponent<ClickToPlay> ().allowedToPause = false;
 
 		StartCoroutine(ActivateGameOverButtons());

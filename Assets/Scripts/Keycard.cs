@@ -19,7 +19,7 @@ public class Keycard : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
-			RPGelements.rpgElements.hasKey = true;
+			RPGelements.instance.hasKey = true;
 			AudioSource.PlayClipAtPoint(clip, transform.position);
 			Destroy(gameObject.transform.parent.gameObject);
 		}

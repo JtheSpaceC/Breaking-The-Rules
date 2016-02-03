@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Health : MonoBehaviour {
 
 	Soldier soldierScript;
+	[HideInInspector] public Shooting shootScript;
 	bool playerControlled = false;
 
 	public AudioClip[] hitSounds;
@@ -37,7 +38,8 @@ public class Health : MonoBehaviour {
 		if (gameObject.tag == "Player") 
 		{
 			playerControlled = true;
-			health = RPGelements.rpgElements.endingHealth;
+			health = RPGelements.instance.endingHealth;
+			shootScript = transform.FindChild("Gun").GetComponentInChildren<Shooting>();
 		}
 		if(!playerControlled)
 		{
@@ -51,7 +53,8 @@ public class Health : MonoBehaviour {
 
 	void Update()
 	{
-		if (playerControlled && !dead) {
+		if (playerControlled && !dead) 
+		{
 			healthSlider.value = health/100;
 		
 			// FOR THE RED FLASH
@@ -100,7 +103,7 @@ public class Health : MonoBehaviour {
 			health -= damage;
 			if(playerControlled)
 			{
-				RPGelements.rpgElements.damageTaken += damage;
+				RPGelements.instance.damageTaken += damage;
 			}
 			// Array of blood splats and hit sounds
 			Vector2 where = transform.position - (theAttacker.transform.position - transform.position).normalized * 0.5f;
@@ -155,6 +158,12 @@ public class Health : MonoBehaviour {
 		Instantiate(deathAnimPrefab, transform.position, transform.rotation);
 		healthSlider.gameObject.SetActive(false);
 		Invoke("CallGameOver", 1.5f); 
+
+		Analytics.CustomEvent("gameOver", new Dictionary<string, object>
+			{
+				{"Ammo remaining", shootScript.ammoReserve + shootScript.ammoGun},
+				{"Level died on", RPGelements.instance.level}
+			});
 	}
 
 	void CallGameOver()

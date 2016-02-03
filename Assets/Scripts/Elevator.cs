@@ -45,7 +45,7 @@ public class Elevator : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
-			if(RPGelements.rpgElements.hasKey)
+			if(RPGelements.instance.hasKey)
 			{
 				startDescent = true;
 			}

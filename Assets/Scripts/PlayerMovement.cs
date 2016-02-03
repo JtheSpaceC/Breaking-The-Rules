@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Start()
 	{
-		normalSpeed = RPGelements.rpgElements.runningSpeed;
-		walkSpeed = RPGelements.rpgElements.walkingSpeed;
+		normalSpeed = RPGelements.instance.runningSpeed;
+		walkSpeed = RPGelements.instance.walkingSpeed;
 
 		speed = normalSpeed;
 	}

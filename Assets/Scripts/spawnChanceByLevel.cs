@@ -8,7 +8,7 @@ public class spawnChanceByLevel : MonoBehaviour {
 
 	void Start () 
 	{
-		float chanceToSpawn = baseChanceToSpawn + (RPGelements.rpgElements.level * chanceMultiplierPerLevel);
+		float chanceToSpawn = baseChanceToSpawn + (RPGelements.instance.level * chanceMultiplierPerLevel);
 		float roll = Random.Range (0, 101);
 		if (roll >= chanceToSpawn)
 			Destroy (gameObject);

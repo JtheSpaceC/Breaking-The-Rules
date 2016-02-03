@@ -23,7 +23,7 @@ public class Syringe : MonoBehaviour {
 		{
 			AudioSource.PlayClipAtPoint(clip, transform.position, 1f);
 
-			RPGelements.rpgElements.adrenalineFound += (int)(adrenalineAmount * Random.Range(0.5f, 2));
+			RPGelements.instance.adrenalineFound += (int)(adrenalineAmount * Random.Range(0.5f, 2));
 
 			Destroy(gameObject);
 		}
